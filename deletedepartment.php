@@ -7,9 +7,6 @@
 	if (isset($_GET['id'])) {
 	  $id = $_GET['id'];
 	  $delete_data = $department->delete($id);
-	  if (isset($delete_data)) {
-	  	header('location: departmentlist.php?msg='.urlencode('Department Deleted Successfully'));
-	  }
 	}
 
  ?>

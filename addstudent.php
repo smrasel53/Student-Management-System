@@ -45,7 +45,7 @@
   
 <div class="container">
   <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-offset-2 col-lg-8">
           <div class="panel panel-default">
               <div class="panel-heading">
                   Add Student
@@ -68,7 +68,7 @@
                     <div class="form-group">
                       <label for="dept_id">Department</label>
                       <select class="form-control" id="dept_id" name="dept_id">
-                      <option>-- Select One --</option>
+                      <option value="0" disabled="true" selected="true">-- Select One --</option>
                      <?php 
                         $result = $department->index();
                         if ($result) {
@@ -101,6 +101,11 @@
       <!-- /.col-lg-6 -->
   </div>
 </div>
-
+ <footer class="navbar-default navbar-fixed-bottom">
+    <div class="container-fluid text-center">
+      <h4>Copyright &copy; Student Management System. All Rights Revered.</h4>
+    </div>
+  </footer>
 </body>
 </html>
+

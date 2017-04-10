@@ -91,7 +91,7 @@
                               <td><?php echo $data['phone']; ?></td>
                               <td>
                                 <a href="editstudent.php?id=<?php echo $data['id']; ?>" class="btn btn-primary btn-sm">Edit</a>
-                                <a href="deletestudent.php?id=<?php echo $data['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="deletestudent.php?id=<?php echo $data['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this data?');">Delete</a>
                               </td>
                           </tr>
                           <?php } } ?>

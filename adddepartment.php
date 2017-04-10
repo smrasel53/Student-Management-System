@@ -43,7 +43,7 @@
   
 <div class="container">
   <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-offset-2 col-lg-8">
           <div class="panel panel-default">
               <div class="panel-heading">
                   Add Department
@@ -61,7 +61,7 @@
                   <form action="" method="post">
                     <div class="form-group">
                       <label for="department">Name</label>
-                      <input type="text" name="department" id="department" class="form-control" placeholder="Please enter department name">
+                      <input type="text" name="department" id="department" class="form-control" placeholder="Please enter department name" required>
                     </div>
                     <button type="submit" class="btn btn-success">Add</button>
                   </form>
@@ -77,3 +77,5 @@
 
 </body>
 </html>
+
+

@@ -1,4 +1,5 @@
 <?php 
+	session_start();
 	include_once '/../database/DB.php';
 	class Department
 	{
@@ -26,12 +27,21 @@
 				return "<div class='alert alert-danger alert-dismissable fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error!</strong> Field must not be empty.</div>";
 				exit();
 			} else {
-				$query = "INSERT INTO $this->table(department) VALUES ('$department')";
-				$insert_data = $this->db->insert($query);
-				if ($insert_data) {
-					return "<div class='alert alert-success alert-dismissable fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Success!</strong> Department Added Successfully.</div>";
-					exit();
+				$query  = "SELECT department FROM $this->table WHERE department = '$department'";
+				$result = $this->db->select($query);
+				if ($result) {
+ 					return "<div class='alert alert-danger alert-dismissable fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error!</strong> Department Already Exists !</div>";
+ 					exit();
+				} else {
+					$query = "INSERT INTO $this->table(department) VALUES ('$department')";
+					$insert_data = $this->db->insert($query);
+					if ($insert_data) {
+						$_SESSION['message'] = "<div class='alert alert-success alert-dismissable fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Success!</strong> Department Added Successfully.</div>";
+						header('location: /../sms/departmentlist.php');
+					}
+					
 				}
+				
 			}
 
 		}
@@ -58,8 +68,8 @@
 						  ";
 				$update_data = $this->db->update($query);
 				if ($update_data) {
-					return "<div class='alert alert-success alert-dismissable fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Success!</strong> Department Updated Successfully.</div>";
-					exit();
+					$_SESSION['message'] = "<div class='alert alert-success alert-dismissable fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Success!</strong> Department Updated Successfully.</div>";
+						header('location: /../sms/departmentlist.php');
 				}
 			}
 
@@ -69,7 +79,10 @@
 		{
 			$query = "DELETE FROM $this->table WHERE id = '$id'";
 			$delete_data = $this->db->delete($query);
-			return $delete_data;
+			if ($delete_data) {
+				$_SESSION['message'] = "<div class='alert alert-success alert-dismissable fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Success!</strong> Department Deleted Successfully.</div>";
+					header('location: /../sms/departmentlist.php');
+			}
 		}
 	}
  ?>

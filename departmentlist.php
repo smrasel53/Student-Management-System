@@ -55,6 +55,11 @@
               $msg = $_GET['msg'];
               echo "<div class='alert alert-success alert-dismissable fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$msg."</div>";
             }
+
+            if (isset($_SESSION['message'])) {
+              echo $_SESSION['message'];
+              unset($_SESSION['message']);
+            }
            ?>
           <div class="panel panel-default">
               <div class="panel-heading">
@@ -83,7 +88,7 @@
                               <td><?php echo $data['department']; ?>
                               <td>
                                 <a href="editdepartment.php?id=<?php echo $data['id']; ?>" class="btn btn-primary btn-sm">Edit</a>
-                                <a href="deletedepartment.php?id=<?php echo $data['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="deletedepartment.php?id=<?php echo $data['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this data?');">Delete</a>
                               </td>
                           </tr>
                           <?php } } ?>
